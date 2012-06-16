@@ -5,6 +5,7 @@ $lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a dui ult
 $times = array("s","min","h","d","mo","yr");
 if($_GET['ticket']){
   include("inc/ticket.php");
+  include("inc/new.php");
 } elseif($_GET['action']=="new") { 
   include("inc/new.php");
 } else {

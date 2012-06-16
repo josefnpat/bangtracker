@@ -1,12 +1,12 @@
       <div class="row">
         <div class="span6">
-          <h2>New Ticket</h2>
+          <h2><?php echo ($_GET['ticket'])?("Reply"):("New");?> Ticket</h2>
           <form class="well">
             <fieldset>
               <div class="control-group">
                 <div class="controls">
                   <label class="control-label" for="textarea">Tickets are parsed in <a href="http://daringfireball.net/projects/markdown/" target="_blank">markdown</a>. HTML is disabled.</label>
-                  <textarea style="width: 100%" id="textarea" rows="8"></textarea>
+                  <textarea style="width: 100%" id="textarea" rows="8"><?php if($_GET['ticket']){ echo "!reply:".$_GET['ticket']."\n"; } ?></textarea>
                 </div>
               </div>
               <div class="form-actions">
