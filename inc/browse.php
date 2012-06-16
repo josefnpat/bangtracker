@@ -1,32 +1,22 @@
       <h2><?php echo $project_name; ?></h2>
       <div class="row">
-        <div class="span2">
+        <div class="span3">
           <h3>Filters</h3>
           <h4>Status</h4>
-          <div class="btn-group"><?php
-if($_GET['set'] == "open"){
-?>
-            <a href="./" class="btn">All</a>
-            <a href="?set=open" class="btn btn-primary">Open</a>
+          <div class="btn-group">
+<?php if($_GET['set'] == "open"){ ?>
+            <a href="./" class="btn btn-primary">Open</a>
             <a href="?set=close" class="btn">Closed</a>
-<?php
-} elseif($_GET['set'] == "close"){
-?>
-            <a href="./" class="btn">All</a>
+<?php } elseif($_GET['set'] == "close"){ ?>
             <a href="?set=open" class="btn">Open</a>
-            <a href="?set=close" class="btn btn-primary">Closed</a>
-<?php
-} else {
-?>
-            <a href="./" class="btn btn-primary">All</a>
+            <a href="./" class="btn btn-primary">Closed</a>
+<?php } else { ?>
             <a href="?set=open" class="btn">Open</a>
             <a href="?set=close" class="btn">Closed</a>
-<?php
-}
-?>
+<?php } ?>
           </div>
         </div>
-        <div class="span10">
+        <div class="span9">
           <h3>Tickets</h3>
           <table class="table table-striped table-condensed">
             <thead>
