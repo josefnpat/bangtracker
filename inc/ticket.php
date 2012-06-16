@@ -8,8 +8,6 @@
       }
       ?></h3>
       <div class="well">
-        <span class="badge"><?php echo $_GET['ticket']; ?></span>
-        <?php echo date("r"); ?><br />
         <?php
 if(rand(0,1)){
   echo "<span class=\"label label-info\"><i class=\"icon-info-sign icon-white\"></i> Status Change</span> &rarr; ";
@@ -20,6 +18,10 @@ if(rand(0,1)){
   }
 }
         ?>
+        <span style="float: right;">
+        <span class="badge"><?php echo $_GET['ticket']+$i; ?></span>
+        <span class="label"><i class="icon-time icon-white"></i> <?php echo date("r"); ?></span>
+        </span>
         <hr />
         <?php echo $lorem; ?>
       </div>
