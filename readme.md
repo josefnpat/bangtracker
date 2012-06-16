@@ -3,7 +3,7 @@ Tables:
 
 * Tickets
   * id [int - index]
-  * time [int] (extended)
+  * time [int]
   * content [string]
 
 * Users (extended)
