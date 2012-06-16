@@ -42,11 +42,11 @@ $times = array("s","min","h","d","mo","yr");
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
-          <a class="brand" href="#">BangTracker</a>
+          <a class="brand" href="./">BangTracker</a>
           <div class="nav-collapse">
             <ul class="nav">
-              <li><a href="#browse">Browse</a></li>
-              <li><a href="#new">New</a></li>
+              <li><a href="./">Browse</a></li>
+              <li><a href="?action=new">New</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -55,13 +55,15 @@ $times = array("s","min","h","d","mo","yr");
 
     <div class="container">
       <a name="browse"></a>
+<?php if(!$_GET['id'] and !$_GET['action']){ ?>
       <h2><?php echo $project_name; ?></h2>
       <div class="row">
         <div class="span2">
           <h3>Filters</h3>
           <div class="btn-group">
-            <a href="#open" class="btn btn-primary">Open</a>
-            <a href="#close" class="btn">Closed</a>
+            <a href="./" class="btn btn-primary">All</a>
+            <a href="?set=open" class="btn">Open</a>
+            <a href="?set=close" class="btn">Closed</a>
           </div>
         </div>
         <div class="span10">
@@ -77,14 +79,22 @@ $times = array("s","min","h","d","mo","yr");
               </tr>
             </thead>
             <tbody>
-<?php
-  for($i=1;$i<20;$i++){
-?>
+<?php for($i=1;$i<=rand(15,25);$i++){ ?>
               <tr> 
                 <td><span class="badge"><?php echo $i; ?></span></td>
-                <td><a href="#"><?php $temp = rand(60,100); echo substr($lorem,rand(1,strlen($lorem)-$temp),$temp); ?></a></td>
+                <td><a href="?id=<?php echo $i; ?>"><?php $temp = rand(60,100); echo substr($lorem,rand(1,strlen($lorem)-$temp),$temp); ?></a></td>
                 <td>
-<?php if(rand(0,1)==0){ ?>
+<?php
+if($_GET['set'] == "open"){
+  $num = 1;
+} elseif($_GET['set'] == "close"){
+  $num = 0;
+} else {
+  $num = rand(0,1);
+}
+
+
+if($num){ ?>
                   <span class="label label-success"><i class="icon-eye-open icon-white"></i> Open</span>
 <?php } else { ?>
                   <span class="label label-inverse"><i class="icon-eye-close icon-white"></i> Closed</span>
@@ -93,13 +103,18 @@ $times = array("s","min","h","d","mo","yr");
                 <td><i class="icon-inbox"></i> <?php echo rand(0,10); ?></td>
                 <td><i class="icon-time"></i> <?php echo rand(1,10)." ".$times[rand(0,5)]; ?></td>
               </tr>
-<?php
-}
-?>
+<?php } ?>
             </tbody>
           </table>
         </div>
       </div>
+<?php } else { ?>
+      <h2>Ticket Name</h2>
+      
+<?php 
+}
+if($_GET['action']=="new"){
+?>
       <hr />
       <a name="new"></a>
       <div class="row">
@@ -132,6 +147,7 @@ $times = array("s","min","h","d","mo","yr");
           </div>
         </div>
       </div>
+<?php } ?>
       <hr>
 <?php
 $parser = new Markdown_Parser; // or MarkdownExtra_Parser
